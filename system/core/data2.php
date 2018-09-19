@@ -11,8 +11,6 @@
     <th>Blank</th>
     <th>Right</th>
     <th>Wrong</th>
-    <th>Edit</th>
-    <th>Delete</th>
   </thead>
   <tbody>
       <?php
@@ -25,14 +23,12 @@
             echo "<input type='hidden' id='uid' value='".$results[$i]->testid."'>";
             echo "<tr>";
             echo "<td>".$results[$i]->testname."</td>";
-            echo "<td>".date("d-M-Y",strtotime($results[$i]->date))."</td>";
+            echo "<td>".date("d-m-Y",strtotime($results[$i]->date))."</td>";
             echo "<td>".$results[$i]->total_ques."</td>";
             echo "<td>".$results[$i]->attempt."</td>";
             echo "<td>".$results[$i]->blank."</td>";
             echo "<td>".$results[$i]->rht."</td>";
             echo "<td>".$results[$i]->wrong."</td>";
-            echo "<td>"."<a id='edt' href='../update/?id=".$results[$i]->testid."' style='color:green;font-size:20px' class='fa fa-magic'></a>"."</td>";
-            echo "<td>"."<a id='tsh' data-id='".$results[$i]->testid."' style='color:red;font-size:20px' class='fa fa-trash'></a>"."</td>";
           }
          }
         }catch(PDOException $e){

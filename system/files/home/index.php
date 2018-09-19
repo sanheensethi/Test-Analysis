@@ -1,9 +1,9 @@
 <?php
 session_start();
 include "../../libs/datetime/index.php";
-if(!isset($_SESSION['id'])){
+/*if(!isset($_SESSION['id'])){
   header("Location: ../login/");
-}
+}*/
 $id = $_SESSION['id'];
 $username = $_SESSION['user'];
 $fullname = $_SESSION['name'];
@@ -27,6 +27,7 @@ $fullname = $_SESSION['name'];
 	    <span class="text-danger">username :<?= $username; ?></span></h3></center>
 	</div>
 	<div class="container">
+	 <h3><a href="../logout/">LOGOUT</a></h3>
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<div class="form-group col-lg-12 col-md-12 col-xs-12">
@@ -86,6 +87,7 @@ $fullname = $_SESSION['name'];
 			<div id="data" class="table-responsive"> </div>
 		</div>
 	</div>
+
 <script src="../../../assets/ad/a/plugins/jQuery/jquery.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript">

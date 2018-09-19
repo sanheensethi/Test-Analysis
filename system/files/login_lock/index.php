@@ -82,7 +82,7 @@
       </div><!-- /.lockscreen-item -->
       
       <div class="help-block text-center">
-      To Register new user click here <span class="glyphicon glyphicon-hand-right"> &nbsp;</span><a href="<? urt(BASEPATH) ?>"><span style="color:red;" class="glyphicon glyphicon-scissors"></span></a><br>
+      To Register new user click here <span class="glyphicon glyphicon-hand-right"> &nbsp;</span><a href="<? urt(BASEPATH); ?>"><span style="color:red;" class="glyphicon glyphicon-scissors"></span></a><br>
         Enter your password to retrieve your session
       </div>
       <div class='text-center'>

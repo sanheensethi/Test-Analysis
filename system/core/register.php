@@ -6,6 +6,7 @@
 	  $user=$_POST['user'];
 	  $pass=$_POST['pass'];
 	  $cpass=$_POST['cpass'];
+	  $batch=$_POST['batch'];
 		if($pass==$cpass){
 		try{
 		   $s = $db->prepare("SELECT count(*) FROM user Where username='".$user."'");
@@ -16,8 +17,8 @@
 		     echo "<span class='text-danger'>Username Already Exists.</span>";
 		   }else{
 		      try{
-		      $s = $db->prepare("INSERT INTO user VALUES (?,?,?,?)");
-		      $values = ["",$fullname,$user,$pass];
+		      $s = $db->prepare("INSERT INTO user VALUES (?,?,?,?,?)");
+		      $values = ["",$fullname,$user,$pass,$batch];
 		      //var_dump($values);
 		      $s->execute($values);
 		      echo "<span class='text-success'>Registerd Successfully</span>";

@@ -1,7 +1,7 @@
 <?php
 include "../../libs/db/pdo.php";
 session_start();
-$id = $_SESSION['id'];
+$id = $_GET['id'];
 try{
  $stmt = $db->prepare("SELECT testname,date,attemptper,blankper,rightper,wrongper from datapoints WHERE userid=".$id." ORDER BY date ASC");
  $stmt->execute();
@@ -63,11 +63,71 @@ try{
 <label style="font-size:30px;">From : </label>
 <input type="date" id="date" class="form-control" placeholder="" required>
 </div>
+<input type="hidden" id="id" value="<?= $id; ?>">
 <div class="form-group col-lg-3 col-md-3 col-xs-3">
 <label style="font-size:30px;">To : </label>
 <input type="date" id="date" class="form-control" placeholder="" required>
 </div>
+<div class="row">
+	<div class="col-md-10 col-lg-10 col-xs-10 col-sm-10" style="padding-right:20px">
+		<div id="search">
+		   <h3>Search Tests :</h3>
+		   <input type="search" id="sch" class="form-control">
+		</div>
+	</div>
 </div>
+<br>
+<div>
+<div id="schdata" class="table-responsive"> </div>
+</div>
+<h2>Tests : </h2>
+<div id="data" class="table-responsive"> </div>
+</div>
+<script src="../../../assets/ad/a/plugins/jQuery/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+  var id = $("#id").val();
+  
+  setInterval(function(){
+  $.ajax({
+  url:"../../core/data2.php",
+  type:"POST",
+  data:{'id':id},
+  success:function(data){
+  $("#data").html(data);
+  }
+  })},200);
+  
+  $('#sch').keyup(function(){
+  var id = $("#id").val();
+  var testname = $("#sch").val();
+  search(id,testname);
+  });
+  
+  $("#sch").blur(function(){
+  $.ajax({
+  url:"../../core/edit.php",
+  type:"POST",
+  success:function(data){
+  $("#schdata").html(data);
+  }
+  });
+  });
+  
+  function search(id,testname){
+  $.ajax({
+  url:"../../core/search2.php",
+  type:"POST",
+  data:{'id':id,'testname':testname},
+  success:function(data){
+  $("#schdata").html(data);
+  }
+  });
+  }
+  
+  
+ });
+</script>
 <script>
 window.onload = function () {
 	var chart = new CanvasJS.Chart("chartContainer", {

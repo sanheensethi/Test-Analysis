@@ -13,19 +13,18 @@ if ( isset($_POST['sub']) )
 	if(1){
 	try{
 	   //echo "SELECT count(*) FROM user Where username=".$user;
-	   $s = $db->prepare("SELECT * FROM user Where username='".$user ."' && password='".$pass."'");
+	   $s = $db->prepare("SELECT * FROM admin Where username='".$user ."' && password='".$pass."'");
 	   $s->execute();
 	   $result = $s->setFetchMode(PDO::FETCH_OBJ); 
 	   $row = $s->fetchAll(PDO::FETCH_OBJ);
 	   if($row){
 	     ob_start();
 	     session_start();
-	     $_SESSION['id'] = $row[0]->userid;
+	     $_SESSION['id'] = $row[0]->adminid;
 	     $_SESSION['user'] = $row[0]->username;
-	     $_SESSION['name'] = $row[0]->fullname;
-	     setcookie("id",$row[0]->userid, time()+(86000*30),"/");
+	     setcookie("id",$row[0]->adminid, time()+(86000*30),"/");
 	     ob_start();
-	     header("Location:../home/");
+	     header("Location: ../home/");
 	   }else{
 	     $msg="Username or Password Wrong";
 	     
@@ -61,7 +60,7 @@ if ( isset($_POST['sub']) )
   <body class="register-page">
     <div class="register-box">
       <div class="register-logo">
-        <a href=""><b><span class="glyphicon glyphicon-sunglasses"></span></b>Test Analysis ( Student Pannel )</a>
+        <a href=""><b><span class="glyphicon glyphicon-sunglasses"></span></b>Test Analysis (Admin Pannel)</a>
       </div>
 
       <div class="register-box-body">
@@ -98,7 +97,7 @@ if ( isset($_POST['sub']) )
         </form>        
 
       <br>
-        <a href="../../../?delcok=del" class="text-center">I want to Register..</a> ( Please clear COOKIES before Click on Registration Link )
+        <a href="<?=urt(BASEPATH)?>?delcok=del" class="text-center">I want to Register..</a> ( Please clear COOKIES before Click on Registration Link )
       </div><!-- /.form-box -->
     </div><!-- /.register-box -->
 

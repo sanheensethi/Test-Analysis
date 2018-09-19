@@ -45,6 +45,10 @@ if(isset($_COOKIE['id'])){
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
+            <input type="text" class="form-control" id="batch" name="bt" placeholder="Batch Name ( Place Name )" required/>
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
             <input type="text" class="form-control" id="user" name="user" placeholder="Username" required/>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
@@ -72,6 +76,7 @@ if(isset($_COOKIE['id'])){
 
       <br>
         <a href="system/files/login/" class="text-center">I already have a membership</a>
+        <br><a href="system/admin/login/" class="text-center">Staff Login</a>
       </div><!-- /.form-box -->
     </div><!-- /.register-box -->
 
@@ -96,12 +101,13 @@ if(isset($_COOKIE['id'])){
     e.preventDefault();
       var firstname = $("#firstname").val();
       var user = $("#user").val();
+      var batch = $("#batch").val();
       var pass = $("#pass").val();
       var cpass = $("#cpass").val();
       $.ajax({
          url:"system/core/register.php",
          type:"POST",
-         data:{'fn':firstname,'user':user,'pass':pass,'cpass':cpass},
+         data:{'fn':firstname,'user':user,'batch':batch,'pass':pass,'cpass':cpass},
     success:function(data){
     $('#show').html(data);
     }

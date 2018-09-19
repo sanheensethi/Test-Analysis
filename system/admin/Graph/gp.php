@@ -31,7 +31,7 @@ try{
   <head>
     <meta charset="UTF-8">
     <title>Registration Page</title>
-   <!-- <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="../../../assets/ad/a/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Font Awesome Icons -->
@@ -49,32 +49,24 @@ try{
     <![endif]-->
   </head>
   <body>
-  <div class="jumbotron bg-success" style="background-color:#de5b5b;color:#fff">
-   <center><h1><b><u>Graph :</u></b></h1></center>
-  </div>
   <div id="chartContainer" style="height: 370px; width: auto; margin: 0px auto;"></div>
 
 <br><br>
-<div class="container">
-<h3><a href="../home/">HOME</a> &nbsp;&nbsp; <a href="../logout/">LOGOUT</a></h3>
-</div>
-<div class="container">
 <div class="form-group col-lg-3 col-md-3 col-xs-3">
-<label style="font-size:30px;">From : </label>
+<label style="font-size:30px">From : </label>
 <input type="date" id="date" class="form-control" placeholder="" required>
 </div>
 <div class="form-group col-lg-3 col-md-3 col-xs-3">
-<label style="font-size:30px;">To : </label>
+<label style="font-size:30px">To : </label>
 <input type="date" id="date" class="form-control" placeholder="" required>
 </div>
-</div>
+
 <script>
 window.onload = function () {
 	var chart = new CanvasJS.Chart("chartContainer", {
 	zoomEnabled:true,
 	animationEnabled:true,
 	animationDuration:5000,
-	exportEnabled:true,
 	title:{
 		text: "Test Analysis Graph"
 	},

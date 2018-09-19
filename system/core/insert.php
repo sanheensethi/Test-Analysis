@@ -11,11 +11,15 @@ $right=$_POST['right'];
 $wrong=$_POST['wrong'];
 $blank=$_POST['blank'];
 $date=$_POST['date'];
-
+ if($attempt <= $total && $blank <= $total && 
+ $right <= $attempt && $wrong <= $attempt &&
+ $total == $blank+$attempt && $attempt == $right+$wrong){
+  $report = 1;
+ }else{
+  $report = 0;
+ }
 if($testname!="" && $total!="" && $attempt!="" && $right!="" && $wrong!="" && $blank!=""){
-if($attempt <= $total && $blank <= $total && 
-   $right <= $attempt && $wrong <= $attempt &&
-   $total == $blank+$attempt && $attempt == $right+$wrong){
+if($report){
 
  /* attempt % */ $attper = ($attempt/($total))*100;
  /* blank % */ $blkper = ($blank/($total))*100;

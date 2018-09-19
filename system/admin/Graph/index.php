@@ -21,10 +21,37 @@ try{
  echo $e->getMessage();
 }
 
+  if(!isset($_POST['plot'])){
   $dataPoints1 = $rper;
   $dataPoints2 = $wper;
   $dataPoints3 = $aper;
   $dataPoints4 = $bper;
+  }else{
+  $fdate = $_POST['fdate'];
+  $tdate = $_POST['tdate'];
+  try{
+  $stmt = $db->prepare("SELECT testname,date,attemptper,blankper,rightper,wrongper from datapoints WHERE userid=".$id." AND ( date BETWEEN '".$fdate."' AND '".$tdate."') ORDER BY date ASC");
+  $stmt->execute();
+  $result=$stmt->fetchAll(PDO::FETCH_OBJ);
+  $rper=[];
+  $wper=[];
+  $aper=[];
+  $bper=[];
+  for($i=0;$i<count($result);$i++){
+  $rper[$i]=["label"=>date("d/M/Y",strtotime($result[$i]->date))." ".$result[$i]->testname,'y'=>$result[$i]->rightper];
+  $wper[$i]=["label"=>date("d/M/Y",strtotime($result[$i]->date))." ".$result[$i]->testname,'y'=>$result[$i]->wrongper];
+  $aper[$i]=["label"=>date("d/M/Y",strtotime($result[$i]->date))." ".$result[$i]->testname,'y'=>$result[$i]->attemptper];
+  $bper[$i]=["label"=>date("d/M/Y",strtotime($result[$i]->date))." ".$result[$i]->testname,'y'=>$result[$i]->blankper];
+  }
+  //var_dump($rper);
+  $dataPoints1 = $rper;
+  $dataPoints2 = $wper;
+  $dataPoints3 = $aper;
+  $dataPoints4 = $bper;
+  }catch(PDOException $e){
+  echo $e->getMessage();
+  }
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -59,15 +86,18 @@ try{
 <h3><a href="../home/">HOME</a> &nbsp;&nbsp; <a href="../logout/">LOGOUT</a></h3>
 </div>
 <div class="container">
+<form method="post">
 <div class="form-group col-lg-3 col-md-3 col-xs-3">
 <label style="font-size:30px;">From : </label>
-<input type="date" id="date" class="form-control" placeholder="" required>
+<input type="date" id="date" name="fdate" class="form-control" placeholder="" required>
 </div>
-<input type="hidden" id="id" value="<?= $id; ?>">
 <div class="form-group col-lg-3 col-md-3 col-xs-3">
 <label style="font-size:30px;">To : </label>
-<input type="date" id="date" class="form-control" placeholder="" required>
+<input type="date" id="date" name="tdate" class="form-control" placeholder="" required>
+<br><input type="submit" id="submit" name="plot" class="btn btn-danger" placeholder="" value="PLOT">
 </div>
+</form>
+<input type="hidden" id="id" value="<?= $id; ?>">
 <div class="row">
 	<div class="col-md-10 col-lg-10 col-xs-10 col-sm-10" style="padding-right:20px">
 		<div id="search">

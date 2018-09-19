@@ -61,7 +61,8 @@ if ( isset($_POST['sub']) )
   <body class="register-page">
     <div class="register-box">
       <div class="register-logo">
-        <a href=""><b><span class="glyphicon glyphicon-sunglasses"></span></b>Test Analysis ( Student Pannel )</a>
+        <a href=""><b><span class="glyphicon glyphicon-sunglasses"></span></b>Test Analysis</a>
+        <h3>Student Pannel</h3>
       </div>
 
       <div class="register-box-body">

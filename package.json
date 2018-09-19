@@ -1,0 +1,23 @@
+{
+  "name": "test-analysis",
+  "version": "1.0.0",
+  "description": "Graph Of Growth of Students giving tests",
+  "main": "index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/sanheensethi"
+  },
+  "keywords": [
+    "Graph",
+    "Maker",
+    "Test",
+    "analysis",
+    "Student",
+    "Growth"
+  ],
+  "author": "Sanheen Sethi",
+  "license": "ISC"
+}

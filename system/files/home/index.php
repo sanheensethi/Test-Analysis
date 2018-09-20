@@ -131,6 +131,17 @@ $fullname = $_SESSION['name'];
 	     });
 	     }
 	    
+	     $('#attempt').keyup(function(){
+	       var total = $('#total').val();
+	       var attempt = $('#attempt').val();
+	       $('#blank').val(total-attempt);
+	     });
+	     
+	     $('#right').keyup(function(){
+	       var attempt = $('#attempt').val();
+	       var right = $('#right').val();
+	       $('#wrong').val(attempt-right);
+	     });
 	     
 	     $("#insert").click(function(){
 	       var id = $("#id").val();

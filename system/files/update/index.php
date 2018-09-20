@@ -111,6 +111,18 @@ try{
 	                  }
 	                });
 	               });
+	               
+	           $('#attempt').keyup(function(){
+	           var total = $('#total').val();
+	           var attempt = $('#attempt').val();
+	           $('#blank').val();
+	           });
+	           
+	           $('#right').keyup(function(){
+	           var attempt = $('#attempt').val();
+	           var right = $('#right').val();
+	           $('#wrong').val(attempt-right);
+	           });
     });
 	</script>
 <script type="text/javascript" src="../../../assets/ad/a/bootstarp/js/tether/tether.js"></script>
